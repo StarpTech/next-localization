@@ -5,8 +5,16 @@
     "source": "src/index.js",
     "module": "dist/index.modern.js",
     "repository": "git@github.com:StarpTech/next-localization.git",
-    "author": "starptech <deusdustin@gmail.com>",
+    "author": {
+        "name": "Dustin Deus",
+        "email": "deusdustin@gmail.com",
+        "url": "https://starptech.de"
+    },
     "license": "MIT",
+    "files": [
+        "*.d.ts",
+        "dist"
+    ],
     "scripts": {
         "build": "microbundle --format modern,cjs --jsx React.createElement",
         "dev": "microbundle watch",
