@@ -55,3 +55,51 @@ const HomePage = () => {
     return <p>{i18n.t('welcome', { username })}</p>;
 };
 ```
+
+### Usage with `getStaticProps`
+
+You can use Next.js's static APIs to feed your `_app.js`'s `lngDict`:
+
+```js
+import { I18n } from 'next-localization';
+
+export default function MyApp({ Component, pageProps }) {
+    return (
+        <I18n lngDict={pageProps.lngDict} locale={pageProps.lng}>
+            <Component {...pageProps} />
+        </I18n>
+    );
+}
+```
+
+Each page should define `getStaticProps` and `getStaticPaths`:
+
+```js
+// pages/[lng]/index.js
+
+export const getStaticProps = async ({ params }) => {
+  // translations obtained from external API at build time
+  // this example is fetching page `index` once for each language defined in `params.lng`
+  const lngDict = await getTranslations('index', params?.lng);
+
+  return {
+    props: {
+      lng: params?.lng,
+      lngDict
+    },
+    revalidate: 1,
+  };
+};
+
+export const getStaticPaths = async () => {
+  // fetching available languages at build time
+  const languages = await getAvailableLanguages(); // ['en', 'de', 'fr']
+  
+  return {
+    paths: languages.map((lng) => ({ params: { lng } })),
+    fallback: false,
+  };
+};
+```
+
+The same system works with `getServerSideProps`.
