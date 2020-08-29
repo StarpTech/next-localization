@@ -4,6 +4,7 @@
     "main": "dist/index.js",
     "source": "src/index.js",
     "module": "dist/index.modern.js",
+    "unpkg": "dist/index.umd.js",
     "repository": "git@github.com:StarpTech/next-localization.git",
     "author": {
         "name": "Dustin Deus",
@@ -16,12 +17,19 @@
         "dist"
     ],
     "scripts": {
-        "build": "microbundle --format modern,cjs --jsx React.createElement",
+        "build": "microbundle --no-sourcemap --no-compress --jsx React.createElement",
         "dev": "microbundle watch",
         "lint": "eslint --fix ./src/**/*",
         "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
         "postinstall": "cd example && yarn",
         "release": "yarn build && yarn lint && release-it"
+    },
+    "lint-staged": {
+        "*.{js,jsx,json,css,md,ts,tsx}": [
+            "yarn run format",
+            "git add"
+        ],
+        "*.{ts,tsx}": []
     },
     "dependencies": {
         "eslint": "^7.7.0",
@@ -34,6 +42,7 @@
         "eslint-plugin-react": "^7.20.6",
         "eslint-plugin-react-hooks": "^4.1.0",
         "eslint-plugin-simple-import-sort": "^5.0.3",
+        "lint-staged": "^10.2.13",
         "microbundle": "^0.12.3",
         "prettier": "^2.1.1",
         "release-it": "^13.7.0"
