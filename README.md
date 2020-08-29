@@ -24,9 +24,11 @@ See [`Demo`](./example) for full example and locale setup.
 Your `_app.js`.
 
 ```js
+import { I18nContextProvider } from 'next-localization';
+
 export default function MyApp({ Component, pageProps }) {
     return (
-        <I18nContextProvider lngDict={{ hello: 'world' }} locale={'en'}>
+        <I18nContextProvider lngDict={{ hello: 'world', welcome: "Welcome, {{username}}!" }} locale={'en'}>
             <Component {...pageProps} />
         </I18nContextProvider>
     );
@@ -36,14 +38,16 @@ export default function MyApp({ Component, pageProps }) {
 Any functional component.
 
 ```js
+import { useI18n } from 'next-localization';
+
 const HomePage = () => {
     const i18n = useI18n();
 
     // Change locale
     i18n.locale('de'); // if dict was already loaded
-    i18n.locale('de', DE); // set and load dict at the same time
+	i18n.locale('de', DE); // set and load dict at the same time
 
     // Checkout https://github.com/lukeed/rosetta for full interpolation support
-    return <p>{i18n.t('hello')}</p>;
+    return <p>{i18n.t('welcome', { username })}</p>;
 };
 ```
