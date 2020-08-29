@@ -7,16 +7,19 @@ export const I18nContext = createContext();
 
 export default function I18n({ children, locale = 'en', lngDict }) {
     const rosettaRef = useRef(null);
-    const activeLocaleRef = useRef(locale);
     const [, setTick] = useState(0);
     const firstRender = useRef(true);
 
     const i18nWrapper = {
-        activeLocale: activeLocaleRef.current,
         t: (...args) => rosettaRef.current.t(...args),
         locale: (l, dict) => {
-            rosettaRef.current.locale(l);
-            activeLocaleRef.current = l;
+            if (l === undefined) {
+                // returns active locale
+                return rosettaRef.current.locale(l);
+            } else {
+                // set new locale
+                rosettaRef.current.locale(l);
+            }
             if (dict) {
                 rosettaRef.current.set(l, dict);
             }
@@ -25,7 +28,7 @@ export default function I18n({ children, locale = 'en', lngDict }) {
         }
     };
 
-    // for initial SSR render
+    // for initial render
     if (locale && firstRender.current === true) {
         firstRender.current = false;
         rosettaRef.current = rosetta();

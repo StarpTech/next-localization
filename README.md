@@ -10,6 +10,7 @@
 
 -   Supports all rendering modes.
 -   Less than 500 bytes – including dependencies!
+-   No builtin pluralization but a [workaround](https://github.com/lukeed/rosetta/issues/4).
 
 ## Installation & Setup <a name="setup"></a> <a name="installation"></a>
 
@@ -24,15 +25,13 @@ See [`Demo`](./example) for full example and locale setup.
 Your `_app.js`.
 
 ```js
-import { I18nContextProvider } from 'next-localization';
+import { I18n } from 'next-localization';
 
 export default function MyApp({ Component, pageProps }) {
     return (
-        <I18nContextProvider
-            lngDict={{ hello: 'world', welcome: 'Welcome, {{username}}!' }}
-            locale={'en'}>
+        <I18n lngDict={{ hello: 'world', welcome: 'Welcome, {{username}}!' }} locale={'en'}>
             <Component {...pageProps} />
-        </I18nContextProvider>
+        </I18n>
     );
 }
 ```
@@ -48,6 +47,9 @@ const HomePage = () => {
     // Change locale
     i18n.locale('de'); // if dict was already loaded
     i18n.locale('de', DE); // set and load dict at the same time
+
+    // Get current locale
+    i18n.locale(); // de
 
     // Checkout https://github.com/lukeed/rosetta for full interpolation support
     return <p>{i18n.t('welcome', { username })}</p>;

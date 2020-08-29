@@ -20,13 +20,13 @@ const Dashboard = () => {
             <Head>
                 <meta
                     httpEquiv="content-language"
-                    content={contentLanguageMap[i18n.activeLocale]}
+                    content={contentLanguageMap[i18n.locale()]}
                 />
             </Head>
             <Title username="Peter" />
             <h2>{i18n.t('intro.text')}</h2>
             <h3>{i18n.t('dashboard.description')}</h3>
-            <div>Current locale: {i18n.activeLocale}</div>
+            <div>Current locale: {i18n.locale()}</div>
             <a
                 href="#"
                 onClick={() => {

@@ -3560,7 +3560,7 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 "next-localization@file:./..":
-  version "1.0.0"
+  version "0.0.2"
   dependencies:
     eslint "^7.7.0"
     rosetta "1.1.0"
