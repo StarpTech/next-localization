@@ -139,7 +139,7 @@ If you need to detect the browser language based on your available app languages
 import { getPreferredLanguage } from 'next-localization';
 
 const appLanguages = ['en', 'de-DE']; // all available app languages
-getPreferredLanguage(appLanguages); // returns the best match
+getPreferredLanguage(appLanguages); // returns the best match based on navigator.languages
 
 // e.g { full: 'en-US', language: 'en', region: 'EN' }
 ```
