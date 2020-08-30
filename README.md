@@ -20,7 +20,7 @@ yarn add next-localization
 
 See [`Demo`](./example) for full example and locale setup.
 
-## Usage
+## Basic Usage
 
 Your `_app.js`.
 
@@ -56,8 +56,9 @@ const HomePage = () => {
 };
 ```
 
-### Usage with `getStaticProps`
+## Usage with [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)
 
+The same steps works with [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering).
 You can use Next.js's static APIs to feed your `_app.js`'s `lngDict`:
 
 ```js
@@ -72,13 +73,13 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-Each page should define `getStaticProps` and `getStaticPaths`:
+Each page should define [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) and [`getStaticPaths`](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation):
 
 ```js
 // pages/[lng]/index.js
 
 export const getStaticProps = async ({ params }) => {
-  // translations obtained from external API at build time
+  // getTranslations will fetch from external API at build time
   // this example is fetching page `index` once for each language defined in `params.lng`
   const lngDict = await getTranslations('index', params?.lng);
 
@@ -92,7 +93,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  // fetching available languages at build time
+  // getAvailableLanguages will fetch available languages at build time
   const languages = await getAvailableLanguages(); // ['en', 'de', 'fr']
   
   return {
@@ -101,5 +102,3 @@ export const getStaticPaths = async () => {
   };
 };
 ```
-
-The same system works with `getServerSideProps`.
