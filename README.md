@@ -131,6 +131,19 @@ module.exports = {
 
 We rely on the native platform api [`Intl`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation).
 
+### Language helper
+
+If you need to detect the browser language based on your available app languages you can use the `getPreferredLanguage` utility function.
+
+```js
+import { getPreferredLanguage } from 'next-localization';
+
+const appLanguages = ['en', 'de-DE']; // all available app languages
+getPreferredLanguage(appLanguages); // returns the best match
+
+// e.g { full: 'en-US', language: 'en', region: 'EN' }
+```
+
 ### Pluralization
 
 We provide a small pluralization `i18n.plural` utility function. The implementation uses [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
@@ -165,7 +178,7 @@ function Child() {
 
 ### Datetime, Numbers
 
-Use [`DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat), [`DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) directly or rely on an external library. The integration will look very similiar.
+Use [`DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat), [`NumberFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) directly or rely on an external library. The integration will look very similiar.
 
 ```js
 import { I18nProvider } from 'next-localization';
@@ -213,11 +226,11 @@ It's safe to create multiple providers with different language dictionaries. Thi
 
 ## Other considerations
 
-Depending on your application `next-localization` won't be sufficient to internationalize your application. You still need to consider:
+Depending on your application `next-localization` might not be sufficient to internationalize your application. You still need to consider:
 
--   Detect user language on browser and server.
+-   Detect user language on server.
 -   Localize your app links `<Link />` based on the user language.
--   Format [times](https://date-fns.org/) and [numbers](https://github.com/openexchangerates/accounting.js).
+-   Format [times](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) and [numbers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat).
 -   Declare html `lang` attributes for SEO and a11y.
 
 With some effort those points are very easy to solve and you can still base on a very lightweight localization strategy.
