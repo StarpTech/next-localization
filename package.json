@@ -19,6 +19,7 @@
     "scripts": {
         "build": "microbundle --no-sourcemap --no-compress --jsx React.createElement",
         "dev": "microbundle watch",
+        "test": "jest --collectCoverage",
         "lint": "eslint --fix ./src/**/*",
         "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
         "postinstall": "cd example && yarn",
@@ -31,20 +32,43 @@
         ],
         "*.{ts,tsx}": []
     },
+    "browserslist": {
+        "development": [
+            "last 2 chrome versions",
+            "last 2 firefox versions",
+            "last 2 edge versions"
+        ],
+        "production": [
+            ">1%",
+            "last 4 versions",
+            "Firefox ESR",
+            "not ie < 11"
+        ]
+    },
     "dependencies": {
         "eslint": "^7.7.0",
         "rosetta": "1.1.0"
     },
     "devDependencies": {
+        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-react": "^7.10.4",
+        "@testing-library/jest-dom": "^5.11.4",
+        "@testing-library/react": "^10.4.9",
+        "babel-jest": "^26.3.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-plugin-jsx-a11y": "^6.3.1",
         "eslint-plugin-prettier": "^3.1.4",
         "eslint-plugin-react": "^7.20.6",
         "eslint-plugin-react-hooks": "^4.1.0",
         "eslint-plugin-simple-import-sort": "^5.0.3",
+        "jest": "^26.4.2",
+        "jest-environment-jsdom-sixteen": "^1.0.3",
         "lint-staged": "^10.2.13",
         "microbundle": "^0.12.3",
         "prettier": "^2.1.1",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-test-renderer": "^16.13.1",
         "release-it": "^13.7.0"
     }
 }
