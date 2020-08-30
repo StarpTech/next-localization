@@ -24,6 +24,18 @@ export const I18n = function () {
                 r.set(l, dict);
             }
             this.onUpdate();
+        },
+        plural(bcp47Tag, pluralRulesOptions = { type: 'ordinal' }) {
+            const PR = new Intl.PluralRules(bcp47Tag, pluralRulesOptions);
+            return (key, params) => {
+                Object.keys(params).map((k) => {
+                    if (typeof params[k] === 'number') {
+                        let pkey = PR.select(params[k]);
+                        params[k] = this.t(`${k}.${pkey}`);
+                    }
+                });
+                return this.t(key, params);
+            };
         }
     };
 };

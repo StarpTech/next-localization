@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { I18nProvider, useI18n, usePlural } from './../src/index';
+import { I18nProvider, useI18n } from './../src/index';
 
 test('Should render key', () => {
     function Root() {
@@ -78,7 +78,8 @@ test('Should pluralize', () => {
         );
     }
     function Child() {
-        const t = usePlural('en');
+        const i18n = useI18n();
+        const t = i18n.plural('en');
         return <p>{t('warning', { birds: 2, foo: 'bar' })}</p>;
     }
 
@@ -105,7 +106,8 @@ test('Should fallback to default behaviour when no number is passed', () => {
         );
     }
     function Child() {
-        const t = usePlural('en');
+        const i18n = useI18n();
+        const t = i18n.plural('en');
         return <p>{t('warning', { birds: 'no-number' })}</p>;
     }
 

@@ -133,10 +133,10 @@ We rely on the native platform api [`Intl`](https://developer.mozilla.org/de/doc
 
 ### Pluralization
 
-We provide a small pluralization `usePlural()` hook. The hook uses [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
+We provide a small pluralization `i18n.plural` utility function. The implementation uses [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
 
 ```js
-import { I18nProvider, usePlural } from 'next-localization';
+import { I18nProvider, useI18n } from 'next-localization';
 
 function Root() {
     return (
@@ -157,7 +157,8 @@ function Root() {
 }
 
 function Child() {
-    const t = usePlural('en-US');
+    const i18n = useI18n();
+    const t = i18n.plural('en-US');
     return <p>{t('warning', { birds: 2 })}</p>; // WARNING: two birds
 }
 ```
@@ -167,7 +168,7 @@ function Child() {
 Use [`DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat), [`DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) directly or rely on an external library. The integration will look very similiar.
 
 ```js
-import { I18nProvider, usePlural } from 'next-localization';
+import { I18nProvider } from 'next-localization';
 
 function Root() {
     return (
@@ -187,7 +188,7 @@ function Child() {
 }
 ```
 
-## Usage on Server
+## Usage on the server
 
 The same api as the `useI18n` react hook.
 
