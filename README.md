@@ -87,6 +87,9 @@ export const getStaticProps = async ({ params }) => {
             lng: params?.lng,
             lngDict
         },
+        // Next.js will attempt to re-generate the page:
+        // - When a request comes in
+        // - At most once every second
         revalidate: 1
     };
 };
