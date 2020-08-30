@@ -78,27 +78,28 @@ Each page should define [`getStaticProps`](https://nextjs.org/docs/basic-feature
 // pages/[lng]/index.js
 
 export const getStaticProps = async ({ params }) => {
-  // getTranslations will fetch from external API at build time
-  // this example is fetching page `index` once for each language defined in `params.lng`
-  const lngDict = await getTranslations('index', params?.lng);
+    // You could also fetch from external API at build time
+    // this example loads locales from disk once for each language defined in `params.lng`
+    const { default: lngDict = {} } = await import(`../../locales/${params.lng}.json`);
 
-  return {
-    props: {
-      lng: params?.lng,
-      lngDict
-    },
-    revalidate: 1,
-  };
+    return {
+        props: {
+            lng: params?.lng,
+            lngDict
+        },
+        revalidate: 1
+    };
 };
 
 export const getStaticPaths = async () => {
-  // getAvailableLanguages will fetch available languages at build time
-  const languages = await getAvailableLanguages(); // ['en', 'de', 'fr']
-  
-  return {
-    paths: languages.map((lng) => ({ params: { lng } })),
-    fallback: false,
-  };
+    // You could also fetch from external API at build time
+    const languages = ['en', 'de', 'fr'];
+
+    return {
+        paths: languages.map((lng) => ({ params: { lng } })),
+        fallback: false
+    };
 };
 ```
+
 _The same steps works with [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)._

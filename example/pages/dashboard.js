@@ -18,10 +18,7 @@ const Dashboard = () => {
     return (
         <div>
             <Head>
-                <meta
-                    httpEquiv="content-language"
-                    content={contentLanguageMap[i18n.locale()]}
-                />
+                <meta httpEquiv="content-language" content={contentLanguageMap[i18n.locale()]} />
             </Head>
             <Title username="Peter" />
             <h2>{i18n.t('intro.text')}</h2>
