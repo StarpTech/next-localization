@@ -191,3 +191,14 @@ function Child() {
 
 Don't forget that a locale change will rerender all components under the `I18nProvider` provider.
 It's safe to create multiple providers with different language dictionaries. This can be useful for lazy-loading scenarios. For all other cases, you can still use `React.memo`, `useMemo` in your components.
+
+## Other considerations
+
+Depending on your application `next-localization` won't be sufficient to internationalize your application. You still need to consider:
+
+-   Detect user language on browser and server.
+-   Localize your app links `<Link />` based on the user language.
+-   Format [times](https://date-fns.org/) and [numbers](https://github.com/openexchangerates/accounting.js).
+-   Declare html `lang` attributes for SEO and a11y.
+
+With some effort those points are very easy to solve and you can still base on a very lightweight localization strategy.
