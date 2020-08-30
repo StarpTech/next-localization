@@ -133,7 +133,7 @@ We rely on the native platform api [`Intl`](https://developer.mozilla.org/de/doc
 
 ### Pluralization
 
-We provide a small pluralization hook. The hook rely on [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
+We provide a small pluralization `usePlural()` hook. The hook uses [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
 
 ```js
 import { I18nProvider, usePlural } from 'next-localization';
@@ -185,6 +185,24 @@ function Child() {
     const date = new Intl.DateTimeFormat('en-US').format(new Date());
     return <p>{t('copyright', { date })}</p>; // Copyright: 8/30/2020
 }
+```
+
+## Usage on Server
+
+The same api as the `useI18n` react hook.
+
+```js
+import { I18n } from 'next-localization';
+
+const i18n = I18n();
+
+i18n.locale('en', { hello: 'world', welcome: 'Welcome, {{username}}!' });
+
+// Get current locale
+i18n.locale(); // de
+
+// translate
+i18n.t('welcome', { username });
 ```
 
 ## Performance considerations

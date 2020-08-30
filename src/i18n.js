@@ -1,47 +1,55 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { createContext, useEffect, useRef, useState } from 'react';
 import rosetta from 'rosetta';
 // import rosetta from 'rosetta/debug';
 
 export const I18nContext = createContext();
 
-export default function I18n({ children, locale = 'en', lngDict }) {
-    const rosettaRef = useRef(null);
-    const [, setTick] = useState(0);
-    const firstRender = useRef(true);
-
-    const i18nWrapper = {
-        t: (...args) => rosettaRef.current.t(...args),
-        locale: (l, dict) => {
+export const I18n = function () {
+    const r = rosetta();
+    return {
+        onUpdate() {},
+        t(...args) {
+            return r.t(...args);
+        },
+        locale(l, dict) {
             if (l === undefined) {
                 // returns active locale
-                return rosettaRef.current.locale(l);
+                return r.locale(l);
             } else {
                 // set new locale
-                rosettaRef.current.locale(l);
+                r.locale(l);
             }
             if (dict) {
-                rosettaRef.current.set(l, dict);
+                r.set(l, dict);
             }
-            // force rerender to update view
-            setTick((tick) => tick + 1);
+            this.onUpdate();
         }
     };
+};
+
+export default function I18nProvider({ children, locale = 'en', lngDict }) {
+    const [, setTick] = useState(0);
+    const i18n = useMemo(() => {
+        const instance = I18n();
+        instance.onUpdate = () => setTick((tick) => tick + 1);
+        return instance;
+    }, []);
+    const firstRender = useRef(true);
 
     // for initial render
     if (locale && firstRender.current === true) {
         firstRender.current = false;
-        rosettaRef.current = rosetta();
-        i18nWrapper.locale(locale, lngDict);
+        i18n.locale(locale, lngDict);
     }
 
     // when locale is updated
     useEffect(() => {
         if (locale) {
-            i18nWrapper.locale(locale, lngDict);
+            i18n.locale(locale, lngDict);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lngDict, locale]);
 
-    return <I18nContext.Provider value={i18nWrapper}>{children}</I18nContext.Provider>;
+    return <I18nContext.Provider value={i18n}>{children}</I18nContext.Provider>;
 }
