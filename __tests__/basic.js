@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { I18nProvider, useI18n } from './../src/index';
+import { I18nProvider, useI18n, usePlural } from './../src/index';
 
 test('Should render key', () => {
     function Root() {
@@ -57,4 +57,58 @@ test('Should print current locale', () => {
 
     const { getByText } = render(<Root />);
     expect(getByText('en')).toBeInTheDocument();
+});
+
+test('Should pluralize', () => {
+    function Root() {
+        return (
+            <I18nProvider
+                lngDict={{
+                    warning: 'WARNING: {{birds}}, {{foo}}',
+                    birds: {
+                        other: 'birds',
+                        one: 'bird',
+                        two: 'two birds',
+                        few: 'some birds'
+                    }
+                }}
+                locale={'en'}>
+                <Child />
+            </I18nProvider>
+        );
+    }
+    function Child() {
+        const t = usePlural('en');
+        return <p>{t('warning', { birds: 2, foo: 'bar' })}</p>;
+    }
+
+    const { getByText } = render(<Root />);
+    expect(getByText('WARNING: two birds, bar')).toBeInTheDocument();
+});
+
+test('Should fallback to default behaviour when no number is passed', () => {
+    function Root() {
+        return (
+            <I18nProvider
+                lngDict={{
+                    warning: 'WARNING: {{birds}}',
+                    birds: {
+                        other: 'birds',
+                        one: 'bird',
+                        two: 'two birds',
+                        few: 'some birds'
+                    }
+                }}
+                locale={'en'}>
+                <Child />
+            </I18nProvider>
+        );
+    }
+    function Child() {
+        const t = usePlural('en');
+        return <p>{t('warning', { birds: 'no-number' })}</p>;
+    }
+
+    const { getByText } = render(<Root />);
+    expect(getByText('WARNING: no-number')).toBeInTheDocument();
 });

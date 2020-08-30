@@ -11,8 +11,8 @@
 
 -   Supports all rendering modes: (Static) | ● (SSG) | λ (Server).
 -   Less than 500 bytes – including dependencies!
--   No build process, No conventions.
--   Works with React hooks.
+-   Pluralization support
+-   No build step, No enforced conventions.
 
 ## Installation & Setup <a name="setup"></a> <a name="installation"></a>
 
@@ -127,9 +127,65 @@ module.exports = {
 };
 ```
 
-## Pluralization
+## Internationalization
 
-This library isn't shipped yet with pluralization rules but there exist a good [workaround](https://github.com/lukeed/rosetta/issues/4).
+We rely on the native platform api [`Intl`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation).
+
+### Pluralization
+
+We provide a small pluralization hook. The hook rely on [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
+
+```js
+import { I18nProvider, usePlural } from 'next-localization';
+
+function Root() {
+    return (
+        <I18nProvider
+            lngDict={{
+                warning: 'WARNING: {{birds}}',
+                birds: {
+                    other: 'birds',
+                    one: 'bird',
+                    two: 'two birds',
+                    few: 'some birds'
+                }
+            }}
+            locale={'en'}>
+            <Child />
+        </I18nProvider>
+    );
+}
+
+function Child() {
+    const t = usePlural('en-US');
+    return <p>{t('warning', { birds: 2 })}</p>; // WARNING: two birds
+}
+```
+
+### Datetime, Numbers
+
+Use [`DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat), [`DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) directly or rely on an external library. The integration will look very similiar.
+
+```js
+import { I18nProvider, usePlural } from 'next-localization';
+
+function Root() {
+    return (
+        <I18nProvider
+            lngDict={{
+                copyright: 'Copyright: {{date}}'
+            }}
+            locale={'en'}>
+            <Child />
+        </I18nProvider>
+    );
+}
+
+function Child() {
+    const date = new Intl.DateTimeFormat('en-US').format(new Date());
+    return <p>{t('copyright', { date })}</p>; // Copyright: 8/30/2020
+}
+```
 
 ## Performance considerations
 
