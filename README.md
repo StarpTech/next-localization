@@ -10,7 +10,7 @@
 ## ✨ Features <a name="features"></a>
 
 -   Supports all rendering modes: (Static) | ● (SSG) | λ (Server).
--   Less than 500 bytes – including dependencies!
+-   Less than 1000 bytes – including dependencies!
 -   Pluralization support
 -   No build step, No enforced conventions.
 
