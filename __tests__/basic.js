@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { I18n, useI18n } from 'next-localization';
+import { I18n, useI18n } from './../src/index';
 
 test('Should render key', () => {
     function Root() {

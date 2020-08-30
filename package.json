@@ -22,7 +22,6 @@
         "test": "jest --collectCoverage",
         "lint": "eslint --fix ./src/**/*",
         "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
-        "postinstall": "cd example && yarn",
         "release": "yarn build && yarn lint && release-it"
     },
     "lint-staged": {
