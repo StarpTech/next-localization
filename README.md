@@ -9,9 +9,10 @@
 
 ## ✨ Features <a name="features"></a>
 
--   Supports all rendering modes.
+-   Supports all rendering modes: (Static) | ● (SSG) | λ (Server).
 -   Less than 500 bytes – including dependencies!
--   No builtin pluralization but a [workaround](https://github.com/lukeed/rosetta/issues/4).
+-   No build process, No conventions.
+-   Works with React hooks.
 
 ## Installation & Setup <a name="setup"></a> <a name="installation"></a>
 
@@ -26,13 +27,13 @@ See [`Demo`](./example) for full example and locale setup.
 Your `_app.js`.
 
 ```js
-import { I18n } from 'next-localization';
+import { I18nProvider } from 'next-localization';
 
 export default function MyApp({ Component, pageProps }) {
     return (
-        <I18n lngDict={{ hello: 'world', welcome: 'Welcome, {{username}}!' }} locale={'en'}>
+        <I18nProvider lngDict={{ hello: 'world', welcome: 'Welcome, {{username}}!' }} locale={'en'}>
             <Component {...pageProps} />
-        </I18n>
+        </I18nProvider>
     );
 }
 ```
@@ -62,13 +63,13 @@ const HomePage = () => {
 You can use Next.js's static APIs to feed your `_app.js`'s `lngDict`:
 
 ```js
-import { I18n } from 'next-localization';
+import { I18nProvider } from 'next-localization';
 
 export default function MyApp({ Component, pageProps }) {
     return (
-        <I18n lngDict={pageProps.lngDict} locale={pageProps.lng}>
+        <I18nProvider lngDict={pageProps.lngDict} locale={pageProps.lng}>
             <Component {...pageProps} />
-        </I18n>
+        </I18nProvider>
     );
 }
 ```
@@ -108,7 +109,29 @@ export const getStaticPaths = async () => {
 
 _The same steps works with [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)._
 
+## Redirect to default language
+
+Next.js +9.5 is shipped with a rewrite engine. This will create a permanent redirect from `/` to `/en` when `en` should be your default language. This features requires to run Next.js in server mode. This won't work if you just export your site.
+
+```js
+module.exports = {
+    redirects() {
+        return [
+            {
+                source: '/',
+                destination: '/en',
+                permanent: true
+            }
+        ];
+    }
+};
+```
+
+## Pluralization
+
+This library isn't shipped yet with pluralization rules but there exist a good [workaround](https://github.com/lukeed/rosetta/issues/4).
+
 ## Performance considerations
 
-Don't forget that a locale change will rerender all components under the `I18n` provider.
+Don't forget that a locale change will rerender all components under the `I18nProvider` provider.
 It's safe to create multiple providers with different language dictionaries. This can be useful for lazy-loading scenarios. For all other cases, you can still use `React.memo`, `useMemo` in your components.
