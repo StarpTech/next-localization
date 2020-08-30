@@ -107,3 +107,8 @@ export const getStaticPaths = async () => {
 ```
 
 _The same steps works with [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)._
+
+## Performance considerations
+
+Don't forget that a locale change will rerender all components under the `I18n` provider.
+It's safe to create multiple providers with different language dictionaries. This can be useful for lazy-loading scenarios. For all other cases, you can still use `React.memo`, `useMemo` in your components.
