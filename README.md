@@ -58,7 +58,6 @@ const HomePage = () => {
 
 ## Usage with [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)
 
-The same steps works with [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering).
 You can use Next.js's static APIs to feed your `_app.js`'s `lngDict`:
 
 ```js
@@ -102,3 +101,4 @@ export const getStaticPaths = async () => {
   };
 };
 ```
+_The same steps works with [`getServerSideProps`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering)._
