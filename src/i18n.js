@@ -46,7 +46,7 @@ export default function I18nProvider({ children, locale = 'en', lngDict, i18nIns
         const instance = i18nInstance ?? I18n();
         instance.onUpdate = () => setTick((tick) => tick + 1);
         return instance;
-    }, []);
+    }, [i18nInstance]);
     const firstRender = useRef(true);
 
     // for initial render
