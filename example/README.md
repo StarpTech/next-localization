@@ -10,6 +10,6 @@ Install it and run:
 npm install
 npm run dev
 # or
-yarn
+yarn --force
 yarn dev
 ```

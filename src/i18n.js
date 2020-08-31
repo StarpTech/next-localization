@@ -12,11 +12,18 @@ export const I18n = function (rosettaOpts) {
         t(...args) {
             return r.t(...args);
         },
-        locale(locale, lngDict, forceLocalChange = true) {
+        table(...args) {
+            return r.table(...args);
+        },
+        set(locale, lngDict) {
+            r.set(locale, lngDict);
+            this.onUpdate();
+        },
+        locale(locale, lngDict) {
             if (locale === undefined) {
                 // returns active locale
                 return r.locale();
-            } else if (forceLocalChange) {
+            } else {
                 // set active locale
                 r.locale(locale);
             }

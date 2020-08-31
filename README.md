@@ -46,10 +46,12 @@ import { useI18n } from 'next-localization';
 const HomePage = () => {
     const i18n = useI18n();
 
-    i18n.locale(); // get current locale
+    i18n.locale(); // returns the current locale
     i18n.locale('de'); // change locale to 'de'
-    i18n.locale('de', DE); // set dictionary and change locale to 'de' at the same time
-    i18n.locale('de', DE, false); // set dictionary but don't change locale
+    i18n.locale('de', DE); // change the local to 'de' and merge (or override) translation keys into the lang collection.
+
+    i18n.set('de', { foo: 'bar' }); // merge (or override) translation keys into the lang collection.
+    i18n.table('de'); // retrieve the the lang's full dictionary/table of translation keys.
 
     // Checkout https://github.com/lukeed/rosetta for full interpolation support
     return <p>{i18n.t('welcome', { username })}</p>;

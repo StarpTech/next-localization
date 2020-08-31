@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { render } from '@testing-library/react';
 import { I18nProvider, useI18n, I18n } from './../src/index';
 
@@ -110,13 +110,12 @@ test('Should fallback to default behaviour when no number is passed', () => {
 });
 
 test('Should be able to pass a custom i18n instance', () => {
+    const i18nInstance = I18n({
+        en: { hello: 'Hello, world!' }
+    });
     function Root() {
         return (
-            <I18nProvider
-                i18nInstance={I18n({
-                    en: { hello: 'Hello, world!' }
-                })}
-                locale="en">
+            <I18nProvider i18nInstance={i18nInstance} locale="en">
                 <Child />
             </I18nProvider>
         );
@@ -127,5 +126,31 @@ test('Should be able to pass a custom i18n instance', () => {
     }
 
     const { getByText } = render(<Root />);
+    expect(getByText('Hello, world!')).toBeInTheDocument();
+});
+
+test('Should be able to set new keys without changing locale', () => {
+    const i18nInstance = I18n({
+        en: { hello: 'Hello, world!' }
+    });
+    function Root() {
+        return (
+            <I18nProvider i18nInstance={i18nInstance} locale="en">
+                <Child />
+            </I18nProvider>
+        );
+    }
+    function Child() {
+        const i18n = useI18n();
+
+        useEffect(() => {
+            i18n.set('de', { hello: 'Hello, Welt!' });
+        }, []);
+
+        return <p>{i18n.t('hello')}</p>;
+    }
+
+    const { getByText } = render(<Root />);
+    expect(i18nInstance.table('de')).toEqual({ hello: 'Hello, Welt!' });
     expect(getByText('Hello, world!')).toBeInTheDocument();
 });
