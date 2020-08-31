@@ -225,7 +225,7 @@ export default function MyApp({ Component, pageProps }) {
 ## Performance considerations
 
 Don't forget that a locale change will rerender all components under the `I18nProvider` provider.
-It's safe to create multiple providers with different language dictionaries. This can be useful for lazy-loading scenarios. For all other cases, you can still use `React.memo`, `useMemo` in your components.
+It's safe to create multiple providers with different language dictionaries. This can be useful if you want to split it into different namespaces. For all other cases, you can still use `React.memo`, `useMemo` in your components.
 
 ## Other considerations
 
