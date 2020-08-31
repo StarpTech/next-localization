@@ -201,24 +201,6 @@ function Child() {
 }
 ```
 
-## Usage on the server
-
-The same api as the `useI18n` react hook.
-
-```js
-import { I18n } from 'next-localization';
-
-const i18n = I18n();
-
-i18n.locale('en', { hello: 'world', welcome: 'Welcome, {{username}}!' });
-
-// Get current locale
-i18n.locale(); // de
-
-// translate
-i18n.t('welcome', { username });
-```
-
 ## Access i18n outside React
 
 If you need to access to the `i18n` outside of react or react hooks, you can create a custom `i18n` instance and pass it to the `I18nProvider`.
@@ -229,6 +211,14 @@ import { I18nProvider, I18n } from 'next-localization';
 const i18n = I18n({
     en: { hello: 'Hello, world!' }
 });
+
+i18n.locale('de', { hello: 'Hallo, Welt!' });
+
+// Get current locale
+i18n.locale(); // de
+
+// translate
+i18n.t('welcome', { username });
 
 export default function MyApp({ Component, pageProps }) {
     return (

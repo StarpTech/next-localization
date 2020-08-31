@@ -15,12 +15,12 @@ export const I18n = function (rosettaOpts) {
         locale(l, dict) {
             if (l === undefined) {
                 // returns active locale
-                return r.locale(l);
+                return r.locale();
             } else {
-                // set new locale
+                // set active locale
                 r.locale(l);
             }
-            if (dict) {
+            if (l && dict) {
                 r.set(l, dict);
             }
             this.onUpdate();
