@@ -47,8 +47,8 @@ const HomePage = () => {
     const i18n = useI18n();
 
     i18n.locale(); // get current locale
-    i18n.locale('de'); // change local
-    i18n.locale('de', DE); // set dictionary and change local at the same time
+    i18n.locale('de'); // change local to 'de'
+    i18n.locale('de', DE); // set dictionary and change local to 'de' at the same time
     i18n.locale('de', DE, false); // set dictionary but don't change local
 
     // Checkout https://github.com/lukeed/rosetta for full interpolation support
