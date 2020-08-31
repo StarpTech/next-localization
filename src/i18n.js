@@ -12,16 +12,16 @@ export const I18n = function (rosettaOpts) {
         t(...args) {
             return r.t(...args);
         },
-        locale(l, dict) {
-            if (l === undefined) {
+        locale(locale, lngDict, forceLocalChange = true) {
+            if (locale === undefined) {
                 // returns active locale
                 return r.locale();
-            } else {
+            } else if (forceLocalChange) {
                 // set active locale
-                r.locale(l);
+                r.locale(locale);
             }
-            if (l && dict) {
-                r.set(l, dict);
+            if (locale && lngDict) {
+                r.set(locale, lngDict);
             }
             this.onUpdate();
         },

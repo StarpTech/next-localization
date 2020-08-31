@@ -46,12 +46,10 @@ import { useI18n } from 'next-localization';
 const HomePage = () => {
     const i18n = useI18n();
 
-    // Change locale
-    i18n.locale('de'); // if dict was already loaded
-    i18n.locale('de', DE); // set and load dict at the same time
-
-    // Get current locale
-    i18n.locale(); // de
+    i18n.locale(); // get current locale
+    i18n.locale('de'); // change local
+    i18n.locale('de', DE); // set dictionary and change local at the same time
+    i18n.locale('de', DE, false); // set dictionary but don't change local
 
     // Checkout https://github.com/lukeed/rosetta for full interpolation support
     return <p>{i18n.t('welcome', { username })}</p>;
@@ -204,6 +202,7 @@ function Child() {
 ## Access i18n outside React
 
 If you need to access to the `i18n` outside of react or react hooks, you can create a custom `i18n` instance and pass it to the `I18nProvider`.
+It's the same interface as `useI18n` returns.
 
 ```js
 import { I18nProvider, I18n } from 'next-localization';
@@ -211,14 +210,6 @@ import { I18nProvider, I18n } from 'next-localization';
 const i18n = I18n({
     en: { hello: 'Hello, world!' }
 });
-
-i18n.locale('de', { hello: 'Hallo, Welt!' });
-
-// Get current locale
-i18n.locale(); // de
-
-// translate
-i18n.t('welcome', { username });
 
 export default function MyApp({ Component, pageProps }) {
     return (
