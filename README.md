@@ -201,7 +201,7 @@ function Child() {
 
 ## Access i18n outside React
 
-If you need to access to the `i18n` outside of react or react hooks, you can create a custom `i18n` instance and pass it to the `I18nProvider`.
+If you need access to the `i18n` outside of react or react hooks, you can create a custom `i18n` instance and pass it to the `I18nProvider`.
 It's the same interface as `useI18n` returns.
 
 ```js
