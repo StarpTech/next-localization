@@ -219,6 +219,26 @@ i18n.locale(); // de
 i18n.t('welcome', { username });
 ```
 
+## Access i18n outside React
+
+If you need to access to the `i18n` outside of react or react hooks, you can create a custom `i18n` instance and pass it to the `I18nProvider`.
+
+```js
+import { I18nProvider, I18n } from 'next-localization';
+
+const i18n = I18n({
+    en: { hello: 'Hello, world!' }
+});
+
+export default function MyApp({ Component, pageProps }) {
+    return (
+        <I18nProvider i18nInstance={i18n} locale={pageProps.lng}>
+            <Component {...pageProps} />
+        </I18nProvider>
+    );
+}
+```
+
 ## Performance considerations
 
 Don't forget that a locale change will rerender all components under the `I18nProvider` provider.

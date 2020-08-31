@@ -5,8 +5,8 @@ import rosetta from 'rosetta';
 
 export const I18nContext = createContext();
 
-export const I18n = function () {
-    const r = rosetta();
+export const I18n = function (rosettaOpts) {
+    const r = rosetta(rosettaOpts);
     return {
         onUpdate() {},
         t(...args) {
@@ -40,10 +40,10 @@ export const I18n = function () {
     };
 };
 
-export default function I18nProvider({ children, locale = 'en', lngDict }) {
+export default function I18nProvider({ children, locale = 'en', lngDict, i18nInstance }) {
     const [, setTick] = useState(0);
     const i18n = useMemo(() => {
-        const instance = I18n();
+        const instance = i18nInstance ?? I18n();
         instance.onUpdate = () => setTick((tick) => tick + 1);
         return instance;
     }, []);
