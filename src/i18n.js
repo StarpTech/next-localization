@@ -59,7 +59,7 @@ export default function I18nProvider({ children, locale = 'en', lngDict, i18nIns
     // for initial render
     if (locale && firstRender.current === true) {
         firstRender.current = false;
-        i18n.locale(locale, lngDict);
+        i18n.set(locale, lngDict);
     }
 
     // when locale is updated
@@ -70,5 +70,5 @@ export default function I18nProvider({ children, locale = 'en', lngDict, i18nIns
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lngDict, locale]);
 
-    return <I18nContext.Provider value={i18n}>{children}</I18nContext.Provider>;
+    return <I18nContext.Provider value={{ ...i18n }}>{children}</I18nContext.Provider>;
 }
