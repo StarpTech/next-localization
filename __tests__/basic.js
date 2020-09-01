@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { I18nProvider, useI18n, I18n } from './../src/index';
 
 test('Should render key', () => {
@@ -149,6 +149,37 @@ test('Should be able to pass a custom i18n instance and langDict', () => {
     const { getByText } = render(<Root />);
     expect(i18nInstance.table('en')).toEqual({ hello: 'Hello, world!' });
     expect(getByText('Hello, world!')).toBeInTheDocument();
+});
+
+test('Should be able to change locale', async () => {
+    const i18nInstance = I18n({
+        en: { hello: 'Hello, world!' }
+    });
+    function Root() {
+        return (
+            <I18nProvider i18nInstance={i18nInstance} locale="en">
+                <Child />
+            </I18nProvider>
+        );
+    }
+    function Child() {
+        const i18n = useI18n();
+
+        useEffect(() => {
+            i18n.locale('de', { hello: 'Hello, Welt!' });
+        }, []);
+
+        return <p>{i18n.t('hello')}</p>;
+    }
+
+    const { getByText } = render(<Root />);
+
+    await waitFor(() => {
+        expect(i18nInstance.locale()).toEqual('de');
+        expect(i18nInstance.table('en')).toEqual({ hello: 'Hello, world!' });
+        expect(i18nInstance.table('de')).toEqual({ hello: 'Hello, Welt!' });
+        expect(getByText('Hello, Welt!')).toBeInTheDocument();
+    });
 });
 
 test('Should be able to set new keys without changing locale', () => {

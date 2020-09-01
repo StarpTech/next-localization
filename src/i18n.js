@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { createContext, useEffect, useRef, useState } from 'react';
+import { createContext, useState } from 'react';
 import rosetta from 'rosetta';
 // import rosetta from 'rosetta/debug';
 
@@ -52,23 +52,10 @@ export default function I18nProvider({ children, locale = 'en', lngDict, i18nIns
     const i18n = useMemo(() => {
         const instance = i18nInstance ?? I18n();
         instance.onUpdate = () => setTick((tick) => tick + 1);
+        instance.locale(locale, lngDict);
         return instance;
-    }, [i18nInstance]);
-    const firstRender = useRef(true);
-
-    // for initial render
-    if (locale && firstRender.current === true) {
-        firstRender.current = false;
-        i18n.set(locale, lngDict);
-    }
-
-    // when locale is updated
-    useEffect(() => {
-        if (locale) {
-            i18n.locale(locale, lngDict);
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [lngDict, locale]);
+    }, [i18nInstance]);
 
     return <I18nContext.Provider value={{ ...i18n }}>{children}</I18nContext.Provider>;
 }

@@ -79,6 +79,17 @@ Each page should define [`getStaticProps`](https://nextjs.org/docs/basic-feature
 ```js
 // pages/[lng]/index.js
 
+export default function HomePage({ lng, lngDict }) {
+    const i18n = useI18n();
+
+    // rerender when fetching new locale on client side
+    useEffect(() => {
+        i18n.locale(lng, lngDict);
+    }, [lng, lngDict]);
+
+    return <h1>{i18n.t('intro.text')}</h1>;
+}
+
 export const getStaticProps = async ({ params }) => {
     // You could also fetch from external API at build time
     // this example loads locales from disk once for each language defined in `params.lng`

@@ -1,12 +1,18 @@
 import { useI18n } from 'next-localization';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 import Title from '../../components/title';
 import { contentLanguageMap, languages } from './../../i18n';
 
-const HomePage = () => {
+const HomePage = ({ lng, lngDict }) => {
     const i18n = useI18n();
+
+    useEffect(() => {
+        i18n.locale(lng, lngDict);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lng, lngDict]);
 
     return (
         <div>
