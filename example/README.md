@@ -13,3 +13,7 @@ npm run dev
 yarn --force
 yarn dev
 ```
+
+## Debugging
+
+Run `link-example.sh` in root of the respository.

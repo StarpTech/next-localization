@@ -129,6 +129,28 @@ test('Should be able to pass a custom i18n instance', () => {
     expect(getByText('Hello, world!')).toBeInTheDocument();
 });
 
+test('Should be able to pass a custom i18n instance and langDict', () => {
+    const i18nInstance = I18n();
+    function Root() {
+        return (
+            <I18nProvider
+                i18nInstance={i18nInstance}
+                locale="en"
+                lngDict={{ hello: 'Hello, world!' }}>
+                <Child />
+            </I18nProvider>
+        );
+    }
+    function Child() {
+        const i18n = useI18n();
+        return <p>{i18n.t('hello')}</p>;
+    }
+
+    const { getByText } = render(<Root />);
+    expect(i18nInstance.table('en')).toEqual({ hello: 'Hello, world!' });
+    expect(getByText('Hello, world!')).toBeInTheDocument();
+});
+
 test('Should be able to set new keys without changing locale', () => {
     const i18nInstance = I18n({
         en: { hello: 'Hello, world!' }

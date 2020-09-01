@@ -127,6 +127,31 @@ module.exports = {
 };
 ```
 
+## Construct correct links
+
+We don't ship a custom `Link` component. You can easily build a utility helper hook/function like this:
+
+```js
+const buildUrl = (url) => `${i18n.locale()}/${url}` // example schema
+
+<Link href={buildUrl('/contact')}><a>Contact</a></Link>
+```
+
+This is clever in multiple ways. In this way you could maintain a map of all your routes for easier maintenance:
+
+```js
+const routes = { contact: { pathname: '/contact', as: '/contact' } };
+const buildUrl = (routeName) => {
+    const newRoute = { ...routes[routeName] };
+    newRoute.as = `/${i18n.locale()}${newRoute.as}`;
+    return newRoute;
+};
+
+<Link href={buildUrl('contact')}>
+    <a>Contact</a>
+</Link>;
+```
+
 ## Internationalization
 
 We rely on the native platform api [`Intl`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation).

@@ -10,7 +10,7 @@
         "next": "latest",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "next-localization": "^0.5.0"
+        "next-localization": "^0.5.1"
     },
     "license": "ISC"
 }
