@@ -15,8 +15,6 @@
 -   No build step, No enforced conventions.
 
 ## Table of Contents
-- [✨ Features](#-features)
-- [Table of Contents](#table-of-contents)
 - [Installation & Setup](#installation--setup)
 - [Basic Usage](#basic-usage)
 - [Usage with `getStaticProps`](#usage-with-getstaticprops)
