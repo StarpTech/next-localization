@@ -7,7 +7,7 @@
 
 ---
 
-## ✨ Features <a name="features"></a>
+## ✨ Features
 
 -   Supports all rendering modes: (Static) | ● (SSG) | λ (Server).
 -   Less than 1000 bytes – including dependencies!
@@ -15,9 +15,9 @@
 -   No build step, No enforced conventions.
 
 ## Table of Contents
-- [✨ Features <a name="features"></a>](#-features-)
+- [✨ Features](#-features)
 - [Table of Contents](#table-of-contents)
-- [Installation & Setup <a name="setup"></a> <a name="installation"></a>](#installation--setup-)
+- [Installation & Setup](#installation--setup)
 - [Basic Usage](#basic-usage)
 - [Usage with `getStaticProps`](#usage-with-getstaticprops)
 - [Redirect to default language](#redirect-to-default-language)
@@ -30,7 +30,7 @@
 - [Performance considerations](#performance-considerations)
 - [Other considerations](#other-considerations)
 
-## Installation & Setup <a name="setup"></a> <a name="installation"></a>
+## Installation & Setup
 
 ```
 yarn add next-localization
