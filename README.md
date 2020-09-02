@@ -7,14 +7,30 @@
 
 ---
 
-## ✨ Features <a name="features"></a>
+## ✨ Features
 
 -   Supports all rendering modes: (Static) | ● (SSG) | λ (Server).
 -   Less than 1000 bytes – including dependencies!
 -   Pluralization support
 -   No build step, No enforced conventions.
 
-## Installation & Setup <a name="setup"></a> <a name="installation"></a>
+## Table of Contents
+- [✨ Features](#-features)
+- [Table of Contents](#table-of-contents)
+- [Installation & Setup](#installation--setup)
+- [Basic Usage](#basic-usage)
+- [Usage with `getStaticProps`](#usage-with-getstaticprops)
+- [Redirect to default language](#redirect-to-default-language)
+- [Construct correct links](#construct-correct-links)
+- [Internationalization](#internationalization)
+  - [Language helper](#language-helper)
+  - [Pluralization](#pluralization)
+  - [Datetime, Numbers](#datetime-numbers)
+- [Access i18n outside React](#access-i18n-outside-react)
+- [Performance considerations](#performance-considerations)
+- [Other considerations](#other-considerations)
+
+## Installation & Setup
 
 ```
 yarn add next-localization
