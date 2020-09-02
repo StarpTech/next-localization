@@ -14,6 +14,22 @@
 -   Pluralization support
 -   No build step, No enforced conventions.
 
+## Table of Contents
+- [✨ Features <a name="features"></a>](#-features-)
+- [Table of Contents](#table-of-contents)
+- [Installation & Setup <a name="setup"></a> <a name="installation"></a>](#installation--setup-)
+- [Basic Usage](#basic-usage)
+- [Usage with `getStaticProps`](#usage-with-getstaticprops)
+- [Redirect to default language](#redirect-to-default-language)
+- [Construct correct links](#construct-correct-links)
+- [Internationalization](#internationalization)
+  - [Language helper](#language-helper)
+  - [Pluralization](#pluralization)
+  - [Datetime, Numbers](#datetime-numbers)
+- [Access i18n outside React](#access-i18n-outside-react)
+- [Performance considerations](#performance-considerations)
+- [Other considerations](#other-considerations)
+
 ## Installation & Setup <a name="setup"></a> <a name="installation"></a>
 
 ```
