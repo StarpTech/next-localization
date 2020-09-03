@@ -197,7 +197,7 @@ getPreferredLanguage(appLanguages); // returns the best match based on users nav
 
 ### Pluralization
 
-We provide a small pluralization `i18n.plural` utility function. It returns the same `ì18n` interface but handles number values as pluralization. The implementation uses [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
+We provide a small pluralization `i18n.withPlural` utility function. It returns the same `ì18n` interface but handles number values as pluralization. The implementation uses [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
 
 ```js
 import { I18nProvider, useI18n } from 'next-localization';
