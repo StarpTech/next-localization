@@ -59,17 +59,23 @@ Any functional component.
 import { useI18n } from 'next-localization';
 
 const HomePage = () => {
-    const i18n = useI18n();
+    const { t, withPlural, locale, set, table } = useI18n();
 
-    i18n.locale(); // returns the current locale
-    i18n.locale('de'); // change locale to 'de'
-    i18n.locale('de', DE); // change the local to 'de' and merge (or override) translation keys into the lang collection.
+    locale(); // returns the current locale.
+    locale('de'); // change locale to 'de'.
+    locale('de', DE); // change the local to 'de' and merge (or override) translation keys into the lang collection.
 
-    i18n.set('de', { foo: 'bar' }); // merge (or override) translation keys into the lang collection.
-    i18n.table('de'); // retrieve the the lang's full dictionary/table of translation keys.
+    set('de', { foo: 'bar' }); // merge (or override) translation keys into the lang collection.
+    table('de'); // retrieve the the lang's full dictionary/table of translation keys.
+
+    const tp = withPlural('en-US'); // handles all number values as pluralization in the specific locale.
 
     // Checkout https://github.com/lukeed/rosetta for full interpolation support
-    return <p>{i18n.t('welcome', { username })}</p>;
+    return (
+        <p>
+            {t('welcome', { username })}, {tp('products', { items: 2 })}
+        </p>
+    );
 };
 ```
 
