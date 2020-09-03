@@ -15,18 +15,19 @@
 -   No build step, No enforced conventions.
 
 ## Table of Contents
-- [Installation & Setup](#installation--setup)
-- [Basic Usage](#basic-usage)
-- [Usage with `getStaticProps`](#usage-with-getstaticprops)
-- [Redirect to default language](#redirect-to-default-language)
-- [Construct correct links](#construct-correct-links)
-- [Internationalization](#internationalization)
-  - [Language helper](#language-helper)
-  - [Pluralization](#pluralization)
-  - [Datetime, Numbers](#datetime-numbers)
-- [Access i18n outside React](#access-i18n-outside-react)
-- [Performance considerations](#performance-considerations)
-- [Other considerations](#other-considerations)
+
+-   [Installation & Setup](#installation--setup)
+-   [Basic Usage](#basic-usage)
+-   [Usage with `getStaticProps`](#usage-with-getstaticprops)
+-   [Redirect to default language](#redirect-to-default-language)
+-   [Construct correct links](#construct-correct-links)
+-   [Internationalization](#internationalization)
+    -   [Language helper](#language-helper)
+    -   [Pluralization](#pluralization)
+    -   [Datetime, Numbers](#datetime-numbers)
+-   [Access i18n outside React](#access-i18n-outside-react)
+-   [Performance considerations](#performance-considerations)
+-   [Other considerations](#other-considerations)
 
 ## Installation & Setup
 
@@ -179,7 +180,7 @@ const buildUrl = (routeName) => {
 
 ## Internationalization
 
-We rely on the native platform api [`Intl`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation).
+We rely on the native platform api [`Intl`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_negotiation). If you need to support older browsers (e.g IE11) use polyfills.
 
 ### Language helper
 
@@ -189,14 +190,14 @@ If you need to detect the browser language based on your available app languages
 import { getPreferredLanguage } from 'next-localization';
 
 const appLanguages = ['en', 'de-DE']; // all available app languages
-getPreferredLanguage(appLanguages); // returns the best match based on navigator.languages
+getPreferredLanguage(appLanguages); // returns the best match based on users navigator.languages
 
 // e.g { full: 'en-US', language: 'en', region: 'EN' }
 ```
 
 ### Pluralization
 
-We provide a small pluralization `i18n.plural` utility function. The implementation uses [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
+We provide a small pluralization `i18n.plural` utility function. It returns the same `ì18n` interface but handles number values as pluralization. The implementation uses [`Intl.PluralRules`](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules).
 
 ```js
 import { I18nProvider, useI18n } from 'next-localization';
@@ -221,7 +222,7 @@ function Root() {
 
 function Child() {
     const i18n = useI18n();
-    const t = i18n.plural('en-US');
+    const t = i18n.withPlural('en-US');
     return <p>{t('warning', { birds: 2 })}</p>; // WARNING: two birds
 }
 ```

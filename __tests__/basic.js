@@ -74,7 +74,7 @@ test('Should pluralize', () => {
     }
     function Child() {
         const i18n = useI18n();
-        const t = i18n.plural('en');
+        const t = i18n.withPlural('en');
         return <p>{t('warning', { birds: 2, foo: 'bar' })}</p>;
     }
 
@@ -102,7 +102,7 @@ test('Should fallback to default behaviour when no number is passed', () => {
     }
     function Child() {
         const i18n = useI18n();
-        const t = i18n.plural('en');
+        const t = i18n.withPlural('en');
         return <p>{t('warning', { birds: 'no-number' })}</p>;
     }
 
