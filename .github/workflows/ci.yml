@@ -1,44 +1,41 @@
 name: Continuous Integration
 on:
-  push:
-    paths-ignore:
-      - 'docs/**'
-      - 'example/**'
-      - '*.md'
-  pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - 'example/**'
-      - '*.md'
+    push:
+        paths-ignore:
+            - 'docs/**'
+            - 'example/**'
+            - '*.md'
+    pull_request:
+        paths-ignore:
+            - 'docs/**'
+            - 'example/**'
+            - '*.md'
 
 env:
-  CI: true
+    CI: true
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x]
-        os: [ubuntu-latest, windows-latest]
-    name: Node ${{ matrix.node-version }}
+    build:
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                node-version: [12.x, 14.x]
+                os: [ubuntu-latest, windows-latest]
+        name: Node ${{ matrix.node-version }}
 
-    steps:
-      - uses: actions/checkout@v2
+        steps:
+            - uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+            - name: Setup node
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
 
-      - name: Install Dependencies
-        run: yarn
+            - name: Install Dependencies
+              run: yarn
 
-      - name: Lint
-        run: yarn lint
+            - name: Tests
+              run: yarn test
 
-      - name: Tests
-        run: yarn test
-
-      - name: Build
-        run: yarn build
+            - name: Build
+              run: yarn build
