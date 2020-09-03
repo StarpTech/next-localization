@@ -6,6 +6,7 @@
     "module": "dist/index.modern.js",
     "unpkg": "dist/index.umd.js",
     "repository": "git@github.com:StarpTech/next-localization.git",
+    "types": "types/index.d.ts",
     "author": {
         "name": "Dustin Deus",
         "email": "deusdustin@gmail.com",
@@ -13,14 +14,15 @@
     },
     "license": "MIT",
     "files": [
-        "*.d.ts",
+        "types/*.d.ts",
         "dist"
     ],
     "scripts": {
         "build": "microbundle --no-sourcemap --no-compress --jsx React.createElement",
+        "tsd": "tsd",
         "dev": "microbundle watch",
         "test": "yarn lint && jest --collectCoverage",
-        "lint": "eslint --fix ./src/**/*",
+        "lint": "eslint --fix ./src/**/* && yarn tsd",
         "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
         "release": "yarn build && yarn lint && release-it"
     },
@@ -54,6 +56,7 @@
         "@babel/preset-react": "^7.10.4",
         "@testing-library/jest-dom": "^5.11.4",
         "@testing-library/react": "^10.4.9",
+        "@types/react": "^16.9.49",
         "babel-jest": "^26.3.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-plugin-jsx-a11y": "^6.3.1",
@@ -70,6 +73,7 @@
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-test-renderer": "^16.13.1",
-        "release-it": "^13.7.0"
+        "release-it": "^13.7.0",
+        "tsd": "^0.13.1"
     }
 }
