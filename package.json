@@ -19,17 +19,15 @@
     "scripts": {
         "build": "microbundle --no-sourcemap --no-compress --jsx React.createElement",
         "dev": "microbundle watch",
-        "test": "jest --collectCoverage",
+        "test": "yarn lint && jest --collectCoverage",
         "lint": "eslint --fix ./src/**/*",
         "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
         "release": "yarn build && yarn lint && release-it"
     },
-    "lint-staged": {
-        "*.{js,jsx,json,css,md,ts,tsx}": [
-            "yarn run format",
-            "git add"
-        ],
-        "*.{ts,tsx}": []
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged && yarn test"
+        }
     },
     "browserslist": {
         "development": [
@@ -52,7 +50,6 @@
         "react": "^16.13.1"
     },
     "devDependencies": {
-        "react": "^16.13.1",
         "@babel/preset-env": "^7.11.0",
         "@babel/preset-react": "^7.10.4",
         "@testing-library/jest-dom": "^5.11.4",
@@ -64,11 +61,13 @@
         "eslint-plugin-react": "^7.20.6",
         "eslint-plugin-react-hooks": "^4.1.0",
         "eslint-plugin-simple-import-sort": "^5.0.3",
+        "husky": "^4.2.5",
         "jest": "^26.4.2",
         "jest-environment-jsdom-sixteen": "^1.0.3",
-        "lint-staged": "^10.2.13",
         "microbundle": "^0.12.3",
         "prettier": "^2.1.1",
+        "pretty-quick": "^3.0.0",
+        "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-test-renderer": "^16.13.1",
         "release-it": "^13.7.0"

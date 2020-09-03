@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
 import { render, waitFor } from '@testing-library/react';
-import { I18nProvider, useI18n, I18n } from './../src/index';
+import React, { useEffect } from 'react';
+
+import { I18n, I18nProvider, useI18n } from './../src/index';
 
 test('Should render key', () => {
     function Root() {

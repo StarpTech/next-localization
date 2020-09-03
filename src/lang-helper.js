@@ -20,9 +20,11 @@ export default function parseLanguage(str) {
 
 export function getPreferredLanguage(availableLanguages = []) {
     const lng = availableLanguages.find((al) =>
-        navigator.languages.find(
-            (bl) => parseLanguage(bl)?.language === parseLanguage(al)?.language
-        )
+        navigator.languages.find((bl) => {
+            const a = parseLanguage(bl);
+            const b = parseLanguage(al);
+            return a?.language === b?.language;
+        })
     );
     if (!lng) {
         return null;

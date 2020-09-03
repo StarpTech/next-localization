@@ -15,7 +15,8 @@ module.exports = {
     env: {
         browser: true,
         amd: true,
-        node: true
+        node: true,
+        jest: true
     },
     plugins: ['simple-import-sort'],
     extends: [
