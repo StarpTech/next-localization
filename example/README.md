@@ -4,16 +4,6 @@ This example uses [next-localization](https://github.com/StarpTech/next-localiza
 
 In `next.config.js` you can configure the fallback language.
 
-Install it and run:
+## Usage
 
-```bash
-npm install
-npm run dev
-# or
-yarn --force
-yarn dev
-```
-
-## Debugging
-
-Run `link-example.sh` in root of the respository.
+Run `link-example.sh` in root of the respository to install and link sources. After that run `yarn dev`.
