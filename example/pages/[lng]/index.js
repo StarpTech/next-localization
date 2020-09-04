@@ -8,6 +8,7 @@ import { contentLanguageMap, languages } from './../../i18n';
 
 const HomePage = ({ lng, lngDict }) => {
     const i18n = useI18n();
+    const tp = i18n.withPlural('en-US');
 
     useEffect(() => {
         i18n.locale(lng, lngDict);
@@ -23,6 +24,7 @@ const HomePage = ({ lng, lngDict }) => {
             <h2>{i18n.t('intro.text')}</h2>
             <h3>{i18n.t('intro.description')}</h3>
             <div>Current locale: {i18n.locale()}</div>
+            <div>Pluralization: {tp('warning', { birds: 2 })}</div>
             <Link href="/[lng]" as="/de">
                 <a>Use client-side routing to change language to 'de'</a>
             </Link>

@@ -6,5 +6,12 @@
     },
     "dashboard": {
         "description": "This example demonstrate how to change the language on client side only. Useful for dashboards because they don't require SEO."
+    },
+    "warning": "WARNING: {{birds}}",
+    "birds": {
+        "other": "birds",
+        "one": "bird",
+        "two": "two birds",
+        "few": "some birds"
     }
 }
