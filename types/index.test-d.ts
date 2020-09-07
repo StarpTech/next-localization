@@ -1,4 +1,10 @@
-import { useI18n, withPlural, getPreferredLanguage, parseLanguage } from '.';
+import { useI18n, withPlural, getPreferredLanguage, parseLanguage, I18n } from '.';
+
+let i18n = I18n();
+i18n.locale('de');
+
+i18n = I18n({ en: { foo: 'bar' } });
+i18n.locale('de');
 
 const { locale, set, t, table } = useI18n<Record<string, Object | string | number>>();
 
