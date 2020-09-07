@@ -29,5 +29,6 @@ interface ProviderProps<T> {
     lngDict?: T;
     locale: string;
     i18nInstance?: I18n<T>;
+    children: JSX.Element;
 }
 interface II18nProvider<T> extends React.FC<ProviderProps<T>> {}
