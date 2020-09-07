@@ -19,6 +19,7 @@ interface Language {
 }
 
 export function useI18n<T>(): I18n<T>;
+export function I18n<T>(): I18n<T>;
 export function withPlural<T>(lTag: string): I18n<T>;
 export function getPreferredLanguage(appLanguages: string[]): Language;
 export function parseLanguage(languageString: string): Language;
