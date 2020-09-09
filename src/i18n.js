@@ -34,14 +34,14 @@ export const I18n = function (rosettaOpts) {
         },
         withPlural(bcp47Tag, pluralRulesOptions = { type: 'ordinal' }) {
             const PR = new Intl.PluralRules(bcp47Tag, pluralRulesOptions);
-            return (key, params) => {
+            return (key, params, ...args) => {
                 Object.keys(params).map((k) => {
                     if (typeof params[k] === 'number') {
                         let pkey = PR.select(params[k]);
                         params[k] = this.t(`${k}.${pkey}`);
                     }
                 });
-                return this.t(key, params);
+                return this.t(key, params, ...args);
             };
         }
     };

@@ -11,6 +11,14 @@ interface I18n<T> {
         params?: X,
         lang?: string
     ): string;
+    withPlural<T>(
+        bcp47Tag: string,
+        pluralOptions?: object
+    ): <X extends Record<string, any> | any[]>(
+        key: string | (string | number)[],
+        params?: X,
+        lang?: string
+    ) => string;
 }
 interface Language {
     full: string;
@@ -20,7 +28,6 @@ interface Language {
 
 export function useI18n<T>(): I18n<T>;
 export function I18n<T>(table?: T): I18n<T>;
-export function withPlural<T>(lTag: string): I18n<T>;
 export function getPreferredLanguage(appLanguages: string[]): Language;
 export function parseLanguage(languageString: string): Language;
 export function I18nProvider<T extends object>(props: ProviderProps<T>): React.ReactElement;
