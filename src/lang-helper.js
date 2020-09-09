@@ -19,15 +19,25 @@ export default function parseLanguage(str) {
 }
 
 export function getPreferredLanguage(availableLanguages = []) {
+    let foundLng = '';
     const lng = availableLanguages.find((al) =>
         navigator.languages.find((bl) => {
             const a = parseLanguage(bl);
             const b = parseLanguage(al);
-            return a?.language === b?.language;
+            if (a && b) {
+                const sameLang = a.language === b.language;
+                // check if we can find a fallback if no language matched
+                if (sameLang) {
+                    foundLng = a.language;
+                }
+                // in locale mode both must match exact
+                if (a.region || b.region) {
+                    return a.full === b.full;
+                }
+                return a.language === b.language;
+            }
+            return false;
         })
     );
-    if (!lng) {
-        return null;
-    }
-    return parseLanguage(lng);
+    return parseLanguage(lng ?? foundLng);
 }
