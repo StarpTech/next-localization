@@ -4,19 +4,20 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import Title from '../components/title';
-import DE from '../locales/de.json';
-import EN from '../locales/en.json';
 
 const Dashboard = () => {
     const router = useRouter();
     const i18n = useI18n();
 
     useEffect(() => {
-        if (router.locale === 'en') {
-            i18n.locale('en', EN);
-        } else if (router.locale === 'de') {
-            i18n.locale('de', DE);
+        async function changeLocale() {
+            if (router.locale === 'en') {
+                i18n.locale('en', await import('../locales/en.json'));
+            } else if (router.locale === 'de') {
+                i18n.locale('de', await import('../locales/de.json'));
+            }
         }
+        changeLocale();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [router.locale]);
 
