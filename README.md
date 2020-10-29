@@ -73,9 +73,9 @@ const HomePage = () => {
     return (
         <>
             <h1>
-                {i18n.t('title')}}{i18n.t('welcome', { username })}
+                {i18n.t('title')}}, {i18n.t('welcome', { username })}
             </h1>
-            <p>{i18nPlural('products', { items: 2 })}</p>
+            <p>{i18nPlural('products_count', { items: 2 })}</p>
             <Link href="/" locale="en">
                 <a>Change language to (en)</a>
             </Link>
