@@ -1,36 +1,41 @@
 import { useI18n } from 'next-localization';
-import Head from 'next/head';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import Title from '../components/title';
 import DE from '../locales/de.json';
 import EN from '../locales/en.json';
-import { contentLanguageMap } from './../i18n';
 
 const Dashboard = () => {
+    const router = useRouter();
     const i18n = useI18n();
 
     useEffect(() => {
-        i18n.locale('en', EN);
+        if (router.locale === 'en') {
+            i18n.locale('en', EN);
+        } else if (router.locale === 'de') {
+            i18n.locale('de', DE);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [router.locale]);
 
     return (
         <div>
-            <Head>
-                <meta httpEquiv="content-language" content={contentLanguageMap[i18n.locale()]} />
-            </Head>
             <Title username="Peter" />
             <h2>{i18n.t('intro.text')}</h2>
             <h3>{i18n.t('dashboard.description')}</h3>
-            <div>Current locale: {i18n.locale()}</div>
-            <a
-                href="#"
-                onClick={() => {
-                    i18n.locale('de', DE);
-                }}>
-                Change language client-side to 'de'
-            </a>
+            <div>Current locale: {router.locale}</div>
+            <div>
+                <Link href="/dashboard" locale="en">
+                    <a>Change language to (en)</a>
+                </Link>
+            </div>
+            <div>
+                <Link href="/dashboard" locale="de">
+                    <a>Change language to (de)</a>
+                </Link>
+            </div>
         </div>
     );
 };

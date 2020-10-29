@@ -54,8 +54,7 @@ export default function I18nProvider({ children, locale = 'en', lngDict, i18nIns
         instance.onUpdate = () => setTick((tick) => tick + 1);
         instance.locale(locale, lngDict);
         return instance;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [i18nInstance]);
+    }, [i18nInstance, locale]);
 
     return <I18nContext.Provider value={{ ...i18n }}>{children}</I18nContext.Provider>;
 }
