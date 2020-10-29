@@ -6,4 +6,4 @@ In `next.config.js` you can configure the fallback language.
 
 ## Usage
 
-Run `link-example.sh` in root of the respository to install and link sources. After that run `yarn dev`.
+Run `yarn` to update the `next-localization` package with the latest updates. After that run `yarn dev` to run the application.

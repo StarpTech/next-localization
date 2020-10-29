@@ -24,7 +24,8 @@
         "test": "yarn lint && jest --collectCoverage",
         "lint": "eslint --fix ./src/**/* && yarn tsd",
         "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
-        "release": "yarn build && yarn lint && release-it"
+        "release": "yarn build && yarn lint && release-it",
+        "postinstall": "yarn link"
     },
     "husky": {
         "hooks": {

@@ -5,7 +5,7 @@
         "dev": "next",
         "build": "next build",
         "start": "next start",
-        "postinstall": "cd .. && yarn link && yarn link 'next-localization' && rm -rf node_modules/next-localization/node_modules"
+        "postinstall": "yarn link 'next-localization' && rm -rf node_modules/react"
     },
     "dependencies": {
         "next": "latest",
