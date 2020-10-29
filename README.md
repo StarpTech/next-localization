@@ -63,24 +63,23 @@ Any functional component.
 
 ```js
 import { useI18n } from 'next-localization';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const HomePage = () => {
+    const router = useRouter();
     const i18n = useI18n();
-
-    i18n.locale(); // returns the current locale.
-    i18n.locale('de'); // change locale to 'de'.
-    i18n.locale('de', DE); // change the local to 'de' and merge (or override) translation keys into the lang collection.
-
-    i18n.set('de', { foo: 'bar' }); // merge (or override) translation keys into the lang collection.
-    i18n.table('de'); // retrieve the the lang's full dictionary/table of translation keys.
-
-    const tp = i18n.withPlural('en-US'); // handles all number values as pluralization in the specific locale.
-
-    // Checkout https://github.com/lukeed/rosetta for full interpolation support
+    const i18nPlural = i18n.withPlural(router.locale);
     return (
-        <p>
-            {i18n.t('welcome', { username })}, {tp('products', { items: 2 })}
-        </p>
+        <>
+            <h1>
+                {i18n.t('title')}}{i18n.t('welcome', { username })}
+            </h1>
+            <p>{i18nPlural('products', { items: 2 })}</p>
+            <Link href="/" locale="en">
+                <a>Change language to (en)</a>
+            </Link>
+        </>
     );
 };
 ```
