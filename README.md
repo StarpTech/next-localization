@@ -92,11 +92,11 @@ _The same steps works with [`getServerSideProps`](https://nextjs.org/docs/basic-
 
 ## Redirect to default language
 
-Built-in with [Next.js 10 Internationalized Routing](https://nextjs.org/docs/advanced-features/i18n-routing)
+Built-in with [Next.js 10 Internationalized Routing](https://nextjs.org/docs/advanced-features/i18n-routing#automatic-locale-detection)
 
 ## Construct correct links
 
-Built-in with [Next.js 10 Internationalized Routing](https://nextjs.org/docs/advanced-features/i18n-routing)
+Built-in with [Next.js 10 Internationalized Routing](https://nextjs.org/docs/advanced-features/i18n-routing#transition-between-locales)
 
 ## Internationalization
 
