@@ -1,6 +1,6 @@
 {
     "name": "next-localization",
-    "version": "0.8.3",
+    "version": "0.9.0",
     "main": "dist/index.js",
     "source": "src/index.js",
     "module": "dist/index.modern.js",
