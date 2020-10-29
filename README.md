@@ -35,7 +35,9 @@
 yarn add next-localization
 ```
 
-See [`Demo`](./example) for full example and locale setup.
+## Example
+
+See [`example`](./example) for full example and locale setup.
 
 ## Basic Usage
 
