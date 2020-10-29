@@ -4,6 +4,9 @@ This example uses [next-localization](https://github.com/StarpTech/next-localiza
 
 In `next.config.js` you can configure the fallback language.
 
-## Usage
+## Development
 
-Run `yarn` to update the `next-localization` package with the latest updates. After that run `yarn dev` to run the application.
+1. Run `yarn link` in the root directory.
+2. Run `yarn` to update the `next-localization` package with the latest updates.
+3. Run `yarn dev` to run the application.
+4. Repeat step 2) if you want to update `next-localization`.
