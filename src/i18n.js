@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { createContext, useState } from 'react';
 import rosetta from 'rosetta';
 // import rosetta from 'rosetta/debug';
@@ -54,7 +54,11 @@ export default function I18nProvider({ children, locale = 'en', lngDict, i18nIns
         instance.onUpdate = () => setTick((tick) => tick + 1);
         instance.locale(locale, lngDict);
         return instance;
-    }, [i18nInstance, locale]);
+    }, [i18nInstance]);
+
+    useEffect(() => {
+        i18n.locale(locale, lngDict);
+    }, [locale]);
 
     return <I18nContext.Provider value={{ ...i18n }}>{children}</I18nContext.Provider>;
 }

@@ -158,7 +158,7 @@ test('Should be able to change locale', async () => {
     });
     function Root() {
         return (
-            <I18nProvider i18nInstance={i18nInstance} locale="en">
+            <I18nProvider i18nInstance={i18nInstance} locale={i18nInstance.locale()}>
                 <Child />
             </I18nProvider>
         );
