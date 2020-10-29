@@ -110,6 +110,7 @@ import { useRouter } from 'next/router';
 import { I18nProvider, useI18n } from 'next-localization';
 
 function Root() {
+    const router = useRouter();
     return (
         <I18nProvider
             lngDict={{
@@ -121,7 +122,7 @@ function Root() {
                     few: 'some birds'
                 }
             }}
-            locale={'en'}>
+            locale={router.locale}>
             <Child />
         </I18nProvider>
     );
