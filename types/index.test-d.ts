@@ -1,4 +1,4 @@
-import { useI18n, getPreferredLanguage, parseLanguage, I18n } from '.';
+import { useI18n, I18n } from '.';
 
 let i18n = I18n();
 i18n.locale('de');
@@ -20,6 +20,3 @@ i18n.table('de');
 const tp = i18n.withPlural('en-US');
 
 tp('a.b', { foo: 3 });
-
-getPreferredLanguage(['de']);
-parseLanguage('de');

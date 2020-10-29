@@ -5,7 +5,7 @@
         "description": "This example demonstrate how to change the language for SSG and SSR optimized pages."
     },
     "dashboard": {
-        "description": "This example demonstrate how to change the language on client side only. Useful for dashboards because they don't require SEO."
+        "description": "This example demonstrate how to lazy-load the language on the client side."
     },
     "warning": "WARNING: {{birds}}",
     "birds": {

@@ -20,16 +20,9 @@ interface I18n<T> {
         lang?: string
     ) => string;
 }
-interface Language {
-    full: string;
-    language: string;
-    region: string;
-}
 
 export function useI18n<T>(): I18n<T>;
 export function I18n<T>(table?: T): I18n<T>;
-export function getPreferredLanguage(appLanguages: string[]): Language;
-export function parseLanguage(languageString: string): Language;
 export function I18nProvider<T extends object>(props: ProviderProps<T>): React.ReactElement;
 
 interface ProviderProps<T> {

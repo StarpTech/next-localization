@@ -24,7 +24,8 @@
         "test": "yarn lint && jest --collectCoverage",
         "lint": "eslint --fix ./src/**/* && yarn tsd",
         "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
-        "release": "yarn build && yarn lint && release-it"
+        "release": "yarn build && yarn lint && release-it",
+        "postinstall": "yarn link"
     },
     "husky": {
         "hooks": {
@@ -45,35 +46,35 @@
         ]
     },
     "dependencies": {
-        "eslint": "^7.7.0",
+        "eslint": "^7.12.1",
         "rosetta": "1.1.0"
     },
     "peerDependencies": {
-        "react": "^16.13.1"
+        "react": "^17.0.1"
     },
     "devDependencies": {
-        "@babel/preset-env": "^7.11.0",
-        "@babel/preset-react": "^7.10.4",
-        "@testing-library/jest-dom": "^5.11.4",
-        "@testing-library/react": "^10.4.9",
-        "@types/react": "^16.9.49",
-        "babel-jest": "^26.3.0",
-        "eslint-config-prettier": "^6.11.0",
-        "eslint-plugin-jsx-a11y": "^6.3.1",
+        "@babel/preset-env": "^7.12.1",
+        "@babel/preset-react": "^7.12.1",
+        "@testing-library/jest-dom": "^5.11.5",
+        "@testing-library/react": "^11.1.0",
+        "@types/react": "^16.9.55",
+        "babel-jest": "^26.6.1",
+        "eslint-config-prettier": "^6.15.0",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
         "eslint-plugin-prettier": "^3.1.4",
-        "eslint-plugin-react": "^7.20.6",
-        "eslint-plugin-react-hooks": "^4.1.0",
+        "eslint-plugin-react": "^7.21.5",
+        "eslint-plugin-react-hooks": "^4.2.0",
         "eslint-plugin-simple-import-sort": "^5.0.3",
-        "husky": "^4.2.5",
-        "jest": "^26.4.2",
+        "husky": "^4.3.0",
+        "jest": "^26.6.1",
         "jest-environment-jsdom-sixteen": "^1.0.3",
-        "microbundle": "^0.12.3",
-        "prettier": "^2.1.1",
-        "pretty-quick": "^3.0.0",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-test-renderer": "^16.13.1",
-        "release-it": "^13.7.0",
+        "microbundle": "^0.12.4",
+        "prettier": "^2.1.2",
+        "pretty-quick": "^3.1.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-test-renderer": "^17.0.1",
+        "release-it": "^14.2.0",
         "tsd": "^0.13.1"
     }
 }
