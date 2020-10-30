@@ -6,12 +6,17 @@ const HomePage = () => {
             <h1>next-localization</h1>
             <div>
                 <Link href="/dashboard">
-                    <a>Go to dashboard page</a>
+                    <a>Go to CSR example (/dashboard)</a>
                 </Link>
             </div>
             <div>
                 <Link href="/foo">
-                    <a>Go to post page (/foo)</a>
+                    <a>Go to SSG example (/foo)</a>
+                </Link>
+            </div>
+            <div>
+                <Link href="/namespace">
+                    <a>Go to code-splitting example (/namespace)</a>
                 </Link>
             </div>
         </div>
