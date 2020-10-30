@@ -7,7 +7,7 @@ import Title from '../../components/title';
 const PostPage = () => {
     const router = useRouter();
     const i18n = useI18n();
-    const tp = i18n.withPlural(router.locale);
+    const tp = i18n.withPlural();
 
     return (
         <div>

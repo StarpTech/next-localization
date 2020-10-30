@@ -12,7 +12,6 @@ interface I18n<T> {
         lang?: string
     ): string;
     withPlural<T>(
-        bcp47Tag: string,
         pluralOptions?: object
     ): <X extends Record<string, any> | any[]>(
         key: string | (string | number)[],

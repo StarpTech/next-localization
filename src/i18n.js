@@ -32,8 +32,8 @@ export const I18n = function (rosettaOpts) {
             }
             this.onUpdate();
         },
-        withPlural(bcp47Tag, pluralRulesOptions = { type: 'ordinal' }) {
-            const PR = new Intl.PluralRules(bcp47Tag, pluralRulesOptions);
+        withPlural(pluralRulesOptions = { type: 'ordinal' }) {
+            const PR = new Intl.PluralRules(r.locale(), pluralRulesOptions);
             return (key, params, ...args) => {
                 Object.keys(params).map((k) => {
                     if (typeof params[k] === 'number') {

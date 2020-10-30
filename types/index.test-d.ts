@@ -17,6 +17,6 @@ i18n.t('a.b', { foo: 3 });
 
 i18n.table('de');
 
-const tp = i18n.withPlural('en-US');
+const tp = i18n.withPlural();
 
 tp('a.b', { foo: 3 });

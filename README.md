@@ -69,7 +69,8 @@ import Link from 'next/link';
 const HomePage = () => {
     const router = useRouter();
     const i18n = useI18n();
-    const i18nPlural = i18n.withPlural(router.locale);
+    // or
+    const i18nPlural = i18n.withPlural();
     return (
         <>
             <h1>
