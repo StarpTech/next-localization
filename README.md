@@ -133,7 +133,7 @@ function Root() {
 function Child() {
     const i18n = useI18n();
     const router = useRouter();
-    const t = i18n.withPlural(router.locale);
+    const t = i18n.withPlural();
     return <p>{t('warning', { birds: 2 })}</p>; // WARNING: two birds
 }
 ```
