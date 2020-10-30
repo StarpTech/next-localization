@@ -58,7 +58,7 @@ export default function I18nProvider({ children, locale = 'en', lngDict, i18nIns
 
     useEffect(() => {
         i18n.locale(locale, lngDict);
-    }, [locale]);
+    }, [locale, lngDict]);
 
     return <I18nContext.Provider value={{ ...i18n }}>{children}</I18nContext.Provider>;
 }

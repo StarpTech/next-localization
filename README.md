@@ -192,7 +192,9 @@ export default function MyApp({ Component, pageProps }) {
 ## Performance considerations
 
 Don't forget that a locale change will rerender all components under the `I18nProvider` provider.
-It's safe to create multiple providers with different language dictionaries. This can be useful if you want to split it into different namespaces. For all other cases, you can still use `React.memo`, `useMemo` in your components.
+It's safe to create multiple providers with different language dictionaries. This can be useful if you want to split it into different namespaces.
+
+[Here](example/pages/namespace.js) you can see an example how to lazy-load a component with a different locale file. Code splitting is ensured by embedding the JSON file via the babel macro [json.macro](https://github.com/ifiokjr/json.macro).
 
 ## Other considerations
 
