@@ -9,7 +9,7 @@ i18n.locale('de');
 i18n = useI18n<Record<string, Object | string | number>>();
 
 i18n.locale('en');
-i18n.locale('en', { foo: 'bar' });
+i18n.locale();
 
 i18n.set('en', { foo: 'bar' });
 

@@ -1,6 +1,6 @@
 interface I18n<T> {
     /** Get/Set the language key */
-    locale(lang?: string, table?: T): string;
+    locale(lang?: string): string;
     /** Define or extend the language table */
     set(lang: string, table: T): void;
     /** Get the table of translations for a language */

@@ -167,7 +167,9 @@ test('Should be able to change locale', async () => {
         const i18n = useI18n();
 
         useEffect(() => {
-            i18n.locale('de', { hello: 'Hello, Welt!' });
+            i18n.set('de', { hello: 'Hello, Welt!' });
+            i18n.locale('de');
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
 
         return <p>{i18n.t('hello')}</p>;
@@ -199,6 +201,7 @@ test('Should be able to set new keys without changing locale', () => {
 
         useEffect(() => {
             i18n.set('de', { hello: 'Hello, Welt!' });
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
 
         return <p>{i18n.t('hello')}</p>;

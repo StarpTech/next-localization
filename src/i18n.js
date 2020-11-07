@@ -8,30 +8,36 @@ export const I18nContext = createContext();
 export const I18n = function (rosettaOpts) {
     const r = rosetta(rosettaOpts);
     return {
-        onUpdate() {},
-        t(...args) {
-            return r.t(...args);
-        },
-        table(...args) {
-            return r.table(...args);
-        },
-        set(locale, lngDict) {
-            r.set(locale, lngDict);
-            this.onUpdate();
-        },
-        locale(locale, lngDict) {
+        /**
+         * Triggers a render cycle
+         */
+        _onUpdate() {},
+        /**
+         * Retrieve a translation segment for the active language
+         */
+        t: r.t,
+        /**
+         * Get the table of translations for a language
+         */
+        table: r.table,
+        /**
+         * Define or extend the language table
+         */
+        set: r.set,
+        /**
+         * Set a locale or returns the active locale
+         */
+        locale(locale) {
             if (locale === undefined) {
-                // returns active locale
                 return r.locale();
-            } else {
-                // set active locale
-                r.locale(locale);
             }
-            if (locale && lngDict) {
-                r.set(locale, lngDict);
-            }
-            this.onUpdate();
+            const activelocale = r.locale(locale);
+            this._onUpdate();
+            return activelocale;
         },
+        /**
+         * Returns an i18n instance that treats number values as pluralization
+         */
         withPlural(pluralRulesOptions = { type: 'ordinal' }) {
             const PR = new Intl.PluralRules(r.locale(), pluralRulesOptions);
             return (key, params, ...args) => {
@@ -51,13 +57,17 @@ export default function I18nProvider({ children, locale = 'en', lngDict, i18nIns
     const [, setTick] = useState(0);
     const i18n = useMemo(() => {
         const instance = i18nInstance ?? I18n();
-        instance.onUpdate = () => setTick((tick) => tick + 1);
-        instance.locale(locale, lngDict);
+        instance._onUpdate = () => setTick((tick) => tick + 1);
+        instance.set(locale, lngDict);
+        instance.locale(locale);
         return instance;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [i18nInstance]);
 
     useEffect(() => {
-        i18n.locale(locale, lngDict);
+        i18n.set(locale, lngDict);
+        i18n.locale(locale);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locale, lngDict]);
 
     return <I18nContext.Provider value={{ ...i18n }}>{children}</I18nContext.Provider>;

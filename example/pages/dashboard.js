@@ -12,9 +12,11 @@ const Dashboard = () => {
     useEffect(() => {
         async function changeLocale() {
             if (router.locale === 'en') {
-                i18n.locale('en', await import('../locales/en.json'));
+                i18n.set('en', await import('../locales/en.json'));
+                i18n.locale('en');
             } else if (router.locale === 'de') {
-                i18n.locale('de', await import('../locales/de.json'));
+                i18n.set('de', await import('../locales/de.json'));
+                i18n.locale('de');
             }
         }
         changeLocale();
