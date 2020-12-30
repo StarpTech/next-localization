@@ -183,7 +183,7 @@ export default function MyApp({ Component, pageProps }) {
     const { lngDict, ...rest } = pageProps;
 
     return (
-        <I18nProvider lngDict={lngDict} locale={router.locale}>
+        <I18nProvider i18nInstance={i18n} lngDict={lngDict} locale={router.locale}>
             <Component {...rest} />
         </I18nProvider>
     );
