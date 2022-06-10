@@ -7,6 +7,11 @@
 
 ---
 
+> **Note**: Are you looking for the next generation API Developer Platform? 🔎 Have a look at: [WunderGraph](https://github.com/wundergraph/wundergraph)
+Turn your services, databases and 3rd party APIs into a secure unified API in just a few minutes. 🪄
+
+---
+
 ## ✨ Features
 
 -   Supports all rendering modes: (Static) | ● (SSG) | λ (Server).
